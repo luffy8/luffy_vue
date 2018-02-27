@@ -22,7 +22,7 @@ export default {
     initCourseDetail (){
       var nid = this.$route.params.id
       var that = this
-      var url = 'http://127.0.0.1:8000/courses/' + nid + '.json'
+      var url = 'http://127.0.0.1:8081/courses/' + nid + '.json'
       this.$axios.request({
         url: url,
         method: 'GET',

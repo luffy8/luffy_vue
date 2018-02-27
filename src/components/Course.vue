@@ -24,7 +24,7 @@ export default {
     initCourses:function () {
       var that = this
       this.$axios.request({
-        url: 'http://127.0.0.1:8000/courses/',
+        url: 'http://127.0.0.1:8081/courses/',
         method: 'GET'
       }).then(function (response) {
         that.courseList = response.data.courseList

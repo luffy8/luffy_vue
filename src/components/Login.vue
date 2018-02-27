@@ -24,7 +24,7 @@ export default {
     doLogin() {
       var that = this
       this.$axios.request({
-        url: 'http://127.0.0.1:8000/login/',
+        url: 'http://127.0.0.1:8081/login/',
         method: 'POST',
         data: {
           username: this.username,
@@ -33,10 +33,18 @@ export default {
         responseType: 'json'
       }).then(function (response) {
         console.log(response.data)
-        // 找到全局变量，把用户名和token赋值到其中。
-        that.$store.commit('saveToken',response.data)
-        // 重定向到index
-        that.$router.push('/index')
+        if(response.data.username){
+            // 找到全局变量，把用户名和token赋值到其中。
+            that.$store.commit('saveToken',response.data);
+            // 重定向到index
+            that.$router.push('/index')
+        }else{
+            alert(response.data.msg);
+          // 重定向到index
+            that.$router.push('/login')
+        }
+
+
       })
     }
   }
