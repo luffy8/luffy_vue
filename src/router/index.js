@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Login from '@/components/Login'
 import Course from '@/components/Course'
 import Micro from '@/components/Micro'
+import MicroDetail from '@/components/MicroDetail'
 import News from '@/components/News'
 import CourseDetail from '@/components/CourseDetail'
 import NotFound from '@/components/NotFound'
@@ -36,6 +37,11 @@ export default new Router({
       path: '/micro',
       name: 'micro',
       component: Micro
+    },
+    {
+      path: '/micro-detail/:id/',
+      name: 'microDetail',
+      component: MicroDetail
     },
     {
       path: '/news',

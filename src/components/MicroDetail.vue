@@ -1,0 +1,42 @@
+<template>
+  <div>
+      <h1>学位课详细</h1>
+      <div>{{summary}}</div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      title:'',
+      summary:'',
+    }
+  },
+  mounted:function () {
+    this.initCourseDetail()
+  },
+  methods:{
+    initCourseDetail (){
+      var nid = this.$route.params.id
+      var that = this
+      var url = 'http://127.0.0.1:8081/micro/' + nid + '.json'
+      this.$axios.request({
+        url: url,
+        method: 'GET',
+        responseType: 'json'
+      }).then(function (response) {
+        console.log(response)
+        that.title = response.data.name
+        that.summary = response.data.brief
+      })
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>
