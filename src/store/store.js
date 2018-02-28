@@ -8,7 +8,8 @@ export default new Vuex.Store({
   // 组件中通过 this.$store.state.username 调用
   state: {
     username: Cookie.get('username'),
-    token: Cookie.get('token')
+    token: Cookie.get('token'),
+    course_detail: '',
   },
   mutations: {
     // 组件中通过 this.$store.commit(参数)  调用
