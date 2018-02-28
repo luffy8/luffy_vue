@@ -2,7 +2,37 @@
   <div>
       <h1>学位课详细</h1>
       <div>{{summary}}</div>
+      <hr>
+      <div>
+        <h3>常见问题</h3>
+        <ul>
+          <li v-for="item in question_list" >
+            <p>{{item.question}}</p>
+            <p>{{item.answer}}</p>
+          </li>
+        </ul>
+      </div>
+      <hr>
+      <div>
+        <h3>大纲</h3>
+        <li v-for="course in course_list" >
+          {{course.name}}
+          <div v-for="item in course.outlines">
+            <p>{{item.title}}</p>
+            {{item.content}}
+          </div>
+        </li>
+      </div>
+    <hr>
+      <div>
+        <h3>项目讲师简介</h3>
+        <div v-for="course in course_list" >
+          <p v-for="item in course.teachers">
+            {{item.name}}----------{{item.brief}}
 
+          </p>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -12,6 +42,8 @@ export default {
     return {
       title:'',
       summary:'',
+      question_list:[],
+      course_list:[],
     }
   },
   mounted:function () {
@@ -30,6 +62,8 @@ export default {
         console.log(response)
         that.title = response.data.name
         that.summary = response.data.brief
+        that.question_list = response.data.questions
+        that.course_list = response.data.courses
       })
     }
   }
