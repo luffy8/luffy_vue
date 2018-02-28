@@ -8,6 +8,7 @@ import MicroDetail from '@/components/MicroDetail'
 import News from '@/components/News'
 import CourseDetail from '@/components/CourseDetail'
 import NotFound from '@/components/NotFound'
+import NewDetail from '@/components/NewDetail'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/new-detail/:id/',
+      name: 'new-detail',
+      component: NewDetail
     },
     {
       path: '/login',
