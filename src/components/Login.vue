@@ -39,7 +39,7 @@ export default {
             // 重定向到index
             that.$router.push('/index')
         }else{
-            alert(response.data.msg);
+            alert(response.data.errors);
           // 重定向到index
             that.$router.push('/login')
         }
