@@ -11,6 +11,7 @@
       <div class="account">
         <div v-if="this.$store.state.username">
           <a>{{ this.$store.state.username }}</a>
+          <router-link to="/cart">购物车</router-link>
           <a @click="logout">注销</a>
         </div>
         <!--<a href="/login/?backUrl=当前所在的URL"></a>-->

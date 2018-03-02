@@ -24,8 +24,8 @@
             </tr>
           </table>
           <div>
-            <a href="">购买</a>
-            <a href="">加入购物车</a>
+            <button style="background: rgb(85, 196, 171);" @click="buy">点击购买</button>
+            <button style="background: rgb(85, 196, 171);" @click="add_cart">加入购物车</button>
           </div>
         </div>
       </div>
@@ -78,6 +78,7 @@
     data() {
       return {
         course_detail: '',
+        price_policy_id: '',
       }
     },
     mounted: function () {
@@ -113,6 +114,7 @@
         console.log(id);
         console.log(price);
         console.log(valid_period);
+        this.price_policy_id = id
 
         event.currentTarget.classList.add('pricepolicy_active')
         var policy_elements = document.getElementsByClassName('price_policy_part')
@@ -121,7 +123,43 @@
             ele.classList.remove('pricepolicy_active')
           }
         }
-      }
+      },
+
+      buy(){
+        if (!this.$store.state.username) {
+          alert("请先登录");
+          this.$route.push('/login')
+        }
+        course_id = this.$route.params.id;
+
+      },
+
+      add_cart(){
+        if (!this.$store.state.token) {
+          alert("请先登录");
+          return;
+        }
+        if (!this.price_policy_id) {
+          alert("请选择价格策略");
+          return;
+        }
+
+        console.log(this.course_detail.price_policy)
+        var that = this;
+        this.$axios.request({
+          url: 'http://127.0.0.1:8081/cart/?token='+this.$store.state.token,
+          method: 'POST',
+          data: {
+            course_id: that.$route.params.id,
+            policy_id: that.price_policy_id
+          },
+          responseType: 'json'
+        }).then(function (response) {
+          console.log(response.data)
+          alert("购物车添加成功")
+        })
+
+      },
     }
   }
 

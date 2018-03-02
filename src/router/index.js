@@ -9,6 +9,7 @@ import News from '@/components/News'
 import CourseDetail from '@/components/CourseDetail'
 import NotFound from '@/components/NotFound'
 import NewDetail from '@/components/NewDetail'
+import Cart from '@/components/Cart'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
     },
     {
       path: '/new-detail/:id/',
